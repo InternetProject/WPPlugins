@@ -1,0 +1,17 @@
+table#events-plugin-ajax-table thead {
+  background-color: #FFF;
+}
+table#events-plugin-ajax-table thead th {
+  min-width: 125px;
+  text-align: left;
+}
+table#events-plugin-ajax-table tbody tr {
+  padding: 5px 0;
+  border-bottom: 1px solid #FFF;
+}
+table#events-plugin-ajax-table tbody tr:nth-of-type(odd) {
+  background-color: #E9E9E9;
+}
+table#events-plugin-ajax-table tbody td {
+  padding: 0 5px;
+}
