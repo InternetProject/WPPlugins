@@ -46,7 +46,6 @@ function ip_club_info_test($post_object) {
         $.ajax({
 		  method: "GET",
   	      url: "http://localhost:49756/api/ClubsWS",
-		  url: "http://localhost:49756/api/ClubMembershipsWS",
           data: { 'id': '5' },
 	      //contentType: 'text/plain'
 	      contentType: 'application/json'
