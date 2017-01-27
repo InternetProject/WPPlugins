@@ -1,7 +1,7 @@
 <?php
 /**
- * Plugin Name: Internet Project Club Info
- * Description: A plugin for retrieving general information about Anderson Clubs
+ * Plugin Name: Internet Project Club Officers Info
+ * Description: A plugin for retrieving information about Anderson Clubs Officers
  * Version: 1.0
  * Author: Gustavo Panez
  * License: GPLv2
@@ -22,17 +22,16 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-function ip_club_info($post_object) {
+function ip_club_officers($post_object) {
   if (is_page('sample-page')) {
     $html .= '<div class="wrap">';
-    $html .= '<h2>Club Info</h2><br />';
-    $html .= '<table id="ip-club-info-ajax-table">
+    $html .= '<h2>Club Officers Info</h2><br />';
+    $html .= '<table id="ip-club-officers-ajax-table">
       <thead>
         <tr>
-          <th>Club Name</th>
-          <th>Club Description</th>
-	  	  <th>Club Email</th>
-		  <th>Nickname</th>
+          <th></th>
+		  <th></th>
+		  <th></th>
         </tr>
       </thead>
       <tbody>';
@@ -42,8 +41,8 @@ function ip_club_info($post_object) {
   ?>
     <script type="text/javascript" >
     jQuery(document).ready(function($) {
-		var clubId = 5;
-		var url = "http://localhost:49756/api/ClubsWS/" + clubId;
+		var clubId = 4;
+		var url = "http://localhost:49756/api/ClubsWS" + "/" + clubId + "/Officers";
         $.ajax({
 		  method: "GET",
   	      url: url,
@@ -51,7 +50,25 @@ function ip_club_info($post_object) {
         })
         .done(function( data ) {
           console.log('Successful AJAX Call! /// Return Data: ' + data);
-		  $('#ip-club-info-ajax-table').append('<tr><td>' + data.name + '</td><td>' + data.description + '</td><td>' + data.email + '</td><td>' + data.nickname + '</td></tr>');
+		  var numCols = 3;
+		  var numRowCompleted = Math.floor(data.length / numCols);
+		  var cellsInIncompleteRow = data.length %  numCols;
+		  for (var i = 0; i < numRowCompleted; i++) {
+			$('#ip-club-officers-ajax-table').append('<tr>');
+			for (var j = 0; j < numCols; j++) {
+				var item = data[i * numCols + j];
+				$('#ip-club-officers-ajax-table').append('<td>' + item.firstName + "</br>" + item.lastName + "</br>" + item.email + "</br>" + item.program + '</td>');
+			}
+			$('#ip-club-officers-ajax-table').append('</tr>');
+		  }
+		  if (cellsInIncompleteRow > 0) {
+			$('#ip-club-officers-ajax-table').append('<tr>');
+			for (var i = 0; i < cellsInIncompleteRow; i++) {
+				var item = data[numRowCompleted * numCols + i];
+				$('#ip-club-officers-ajax-table').append('<td>' + item.firstName + "</br>" + item.lastName + "</br>" + item.email + "</br>" + item.program + '</td>');
+			}
+			$('#ip-club-officers-ajax-table').append('</tr>');
+		  }
         })
         .fail(function( data ) {
           console.log('Failed AJAX Call :( /// Return Data: ' + data);
@@ -62,5 +79,5 @@ function ip_club_info($post_object) {
   }
 }
 
-add_action('the_post', 'ip_club_info');
+add_action('the_post', 'ip_club_officers');
 ?>
