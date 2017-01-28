@@ -44,7 +44,7 @@ function ip_club_events_test($post_object) {
         $.ajax({
 		  method: "GET",
   	      url: "http://localhost:49756/api/EventsWS",
-		      data: { 'clubid': '3' },
+		      data: { 'id': '3' },
 	      //contentType: 'text/plain'
 	      contentType: 'application/json'
         })
