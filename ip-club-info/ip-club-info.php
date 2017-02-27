@@ -23,7 +23,7 @@
  */
 
 function ip_club_info($post_object) {
-  if (is_page('sample-page')) {
+  if (is_page('about-page')) {
     $html .= '<div class="wrap">';
     $html .= '<h2>Club Info</h2><br />';
     $html .= '<table id="ip-club-info-ajax-table">
@@ -43,7 +43,7 @@ function ip_club_info($post_object) {
     <script type="text/javascript" >
     jQuery(document).ready(function($) {
 		var clubId = 5;
-		var url = "http://localhost:49756/api/ClubsWS/" + clubId;
+		var url = "http://localhost:5050/api/ClubsWS/" + clubId;
         $.ajax({
 		  method: "GET",
   	      url: url,
