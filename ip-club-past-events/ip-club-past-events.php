@@ -23,7 +23,7 @@
  */
 
 function ip_club_past_events($post_object) {
-  if (is_page('recent-events-page')) {
+  if (is_page('past-events')) {
     $html .= '<div class="wrap">';
     $html .= '<div id="ip-club-past-events-ajax-list"><h2>Recent Past Club Events Info</h2></div>';
     echo $html;
@@ -31,7 +31,6 @@ function ip_club_past_events($post_object) {
     <script type="text/javascript" >
     jQuery(document).ready(function($) {
 		var clubId = 1;
-		//var url = "http://localhost:49756/api/ClubsWS" + "/" + clubId + "/PastEvents";
 		var url = "http://localhost:5050/api/ClubsWS/" + clubId + "/PastEvents";
         $.ajax({
 		  method: "GET",

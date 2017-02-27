@@ -23,7 +23,7 @@
  */
 
 function ip_club_events($post_object) {
-  if (is_page('upcoming-events')) {
+  if (is_page('events')) {
     $html .= '<div class="wrap">';
     $html .= '<div id="ip-club-events-ajax-list"><h2>Upcoming Club Events Info</h2></div>';
     echo $html;
@@ -31,7 +31,6 @@ function ip_club_events($post_object) {
     <script type="text/javascript" >
     jQuery(document).ready(function($) {
 		var clubId = 1;
-		//var url = "http://localhost:49756/api/ClubsWS" + "/" + clubId + "/Events";
 		var url = "http://localhost:5050/api/ClubsWS/" + clubId + "/Events";
         $.ajax({
 		  method: "GET",
