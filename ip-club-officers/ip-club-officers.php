@@ -23,7 +23,7 @@
  */
 
 function ip_club_officers($post_object) {
-  if (is_page('sample-page')) {
+  if (is_page('officers-page')) {
     $html .= '<div class="wrap">';
     $html .= '<h2>Club Officers Info</h2><br />';
     $html .= '<table id="ip-club-officers-ajax-table">
@@ -42,7 +42,8 @@ function ip_club_officers($post_object) {
     <script type="text/javascript" >
     jQuery(document).ready(function($) {
 		var clubId = 4;
-		var url = "http://localhost:49756/api/ClubsWS" + "/" + clubId + "/Officers";
+		//var url = "http://localhost:49756/api/ClubsWS" + "/" + clubId + "/Officers";
+		var url = "http://localhost:5050/api/ClubsWS/" + "/" + clubId + "/Officers";
         $.ajax({
 		  method: "GET",
   	      url: url,

@@ -1,7 +1,7 @@
 <?php
 /**
- * Plugin Name: Internet Project Club Events Info
- * Description: A plugin for retrieving information about events of an specific Anderson Club
+ * Plugin Name: Internet Project Club Past Events Info
+ * Description: A plugin for retrieving information about past events (last 10) of an specific Anderson Club
  * Version: 1.0
  * Author: Gustavo Panez
  * License: GPLv2
@@ -22,17 +22,17 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-function ip_club_events($post_object) {
-  if (is_page('upcoming-events')) {
+function ip_club_past_events($post_object) {
+  if (is_page('recent-events-page')) {
     $html .= '<div class="wrap">';
-    $html .= '<div id="ip-club-events-ajax-list"><h2>Upcoming Club Events Info</h2></div>';
+    $html .= '<div id="ip-club-past-events-ajax-list"><h2>Recent Past Club Events Info</h2></div>';
     echo $html;
   ?>
     <script type="text/javascript" >
     jQuery(document).ready(function($) {
 		var clubId = 1;
-		//var url = "http://localhost:49756/api/ClubsWS" + "/" + clubId + "/Events";
-		var url = "http://localhost:5050/api/ClubsWS/" + clubId + "/Events";
+		//var url = "http://localhost:49756/api/ClubsWS" + "/" + clubId + "/PastEvents";
+		var url = "http://localhost:5050/api/ClubsWS/" + clubId + "/PastEvents";
         $.ajax({
 		  method: "GET",
   	      url: url,
@@ -72,7 +72,7 @@ function ip_club_events($post_object) {
 						</div> \
 					</div> \
 				</div>';
-			$('#ip-club-events-ajax-list').append(html);
+			$('#ip-club-past-events-ajax-list').append(html);
 		  }
         })
         .fail(function( data ) {
@@ -84,5 +84,5 @@ function ip_club_events($post_object) {
   }
 }
 
-add_action('the_post', 'ip_club_events');
+add_action('the_post', 'ip_club_past_events');
 ?>
